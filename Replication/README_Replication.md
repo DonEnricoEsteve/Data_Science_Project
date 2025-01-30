@@ -74,5 +74,5 @@ This file also describes the purpose of each numbered (00-12) Python script of v
 
 * Average the connectivity across subjects for each condition, and save as "study_path/MEG/{condition}-average-connectivity.h5"
 * Compute contrast between face and scrambled, and save as "study_path/MEG/contrast-average-connectivity.h5"
-* Perform permutation test to guide pruning [PLOT 5] and parcellation [PLOT 6] of the contrast connectivity
+* Perform permutation test to guide pruning **[PLOT 5]** and parcellation **[PLOT 6]** of the contrast connectivity
 * Save pruned as "study_path/MEG/pruned-average-connectivity.h5"; parcellated as "study_path/MEG/parcellated-average-connectivity.h5"
