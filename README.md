@@ -22,4 +22,7 @@ Two files are available alongside the respective directories for pipeline replic
 <h3> Other files </h3>
 The "requirements.txt" file contains all necessary modules and packages for the pipeline replication and implementation.
 
+<h3> Directory Structure </h3>
+
+
 
