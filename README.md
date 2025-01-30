@@ -16,5 +16,8 @@ For proprietary reasons, no data has been uploaded to this section. Instead, per
 
 Pipeline implementation entails applying the pipeline of van Vliet et al. (2018) to our MEG food dataset, obtained from the MEG-BIU Laboratory.
 
+<h3> Submittables </h3>
+Two files are available alongside the respective directories for pipeline replication and implementation: (1) DS_Python_Paper.pdf serves as the report for this project in IMRAD format, and (2) DS_Python_Presentation.pptx was used for presenting the project last 01/30/2025.
+
 
 
