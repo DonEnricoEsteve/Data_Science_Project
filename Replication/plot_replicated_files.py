@@ -133,7 +133,6 @@ def plot_source_space(sub_idx=0, meg_val='sensors', surface_val='white'):
     except ValueError as e:
         print(f"The PyVistaFigure object named 'fig' was not defined properly due to: {e}")
 
-# Function to plot the forward model for a given subject
 def plot_forward_model(sub_idx=0):
     """
     Plots the 3D forward model for the given subject index.
