@@ -4,11 +4,12 @@ This markdown file is presented in place of all files and scripts for replicatio
 
 This file also describes the purpose of each numbered (00-12) Python script of van Vliet et al. (2018) and outlines how each script was used during the replication. The steps that yield the plots in the "DSC_Python_Plot_Replication.py" script are identified with **[PLOT]**.
 
-<h3> General instructions for using the script </h3>
+<h3> General instructions for using the scripts </h3>
 
-* Define your study_path
+* Define your study_path. 
 * Download the "data" folder from this link: https://drive.google.com/drive/folders/12HLqUYrPtiYSf5Ni7tTC4XWkFPLKYR55?usp=sharing
 * After cloning the repo, put the "data" folder inside "study_path/Replication"
+* Run the functions defined in "plot_replicated_files.py" using "main.py".
 
 <h3> Notes about the full replication process in our local machine </h3>
 
