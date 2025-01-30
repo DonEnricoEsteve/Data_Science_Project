@@ -1,8 +1,8 @@
 # Define necessary module(s)
 import os
 
-# Define the study_path variable 
-base_dir = os.getcwd()
+# Define as the root directory (Replication) which contains both data and src directories
+base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 # Set location of surf files for source visualization
 os.environ["SUBJECTS_DIR"] = os.path.join(base_dir, 'data', 'templates')
