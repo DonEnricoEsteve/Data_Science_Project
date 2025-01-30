@@ -1,4 +1,4 @@
-<h1> This repository was created for the final project of the Data Science and Advanced Python course </h1>
+<h1> Repository for the Final project of the Data Science and Advanced Python Course </h1>
 
 By Don Enrico Esteve (P9550217B) and Elizabeth Vaisman (318775277) 
 
