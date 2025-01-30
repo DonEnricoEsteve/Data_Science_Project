@@ -50,8 +50,6 @@ subject_directory_pattern = f"{subs_directory}/sub*"
 
 mat_file_path_pattern = f"*.mat"
 
-reports_directory = f"{project_directory}/Reports"
+html_report_path = f"report.html"
 
-html_report_path = f"{reports_directory}/report.html"
-
-h5_report_path = f"{reports_directory}/report.h5"
+h5_report_path = f"report.h5"

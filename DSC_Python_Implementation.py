@@ -81,6 +81,69 @@ def convert_mat_to_dict(file_name: os.PathLike):
         return dict_from_mat
 
 
+def extract_from_dict(sub_dict: dict):
+ 
+    """
+    
+    Recieves:
+    * sub_dict: subject dictionary with the data that was converted from mat file, with fields:['data']['trial'], ['data']['trialinfo'], 
+    ['data']['grad']['label'], ['data']['fsample'].
+    
+    Function:
+    * Extracts relevant data from the dictionary for the following steps.
+
+    Returns: 
+    * data: ndarray of shape (trials, channels, time points). 
+    * events_code: ndarray of shape (1, trials), stores the integers corresponding to the condition tested in each trial, 
+    * ch_names: list of length 246, first 246 channel (sensor) names as a  (all "good" magnometers, the bad and reference channels are excluded).
+    * s_freq: int, sampling frequency.
+
+     """
+
+    try:
+        # Extract data and trial info
+        data = sub_dict.get("data").get("trial") 
+        events_code = np.array(sub_dict.get("data").get("trialinfo")[:, 0], dtype=int) # convert from float to int
+        ch_names = sub_dict.get("data").get("grad").get("label")[0:246]
+        sfreq = sub_dict.get("data").get("fsample")
+        
+    except NameError as e:
+        print("An error occured:", e)
+        
+    except AttributeError as e:
+       print("An error occured:", e) 
+
+    except ValueError as e:
+        print("An error occured:", e)
+    
+    except TypeError as e:
+        print("An error occured:", e)
+    
+    except KeyError as e:
+        print("An error occured:", e)
+
+    except Exception as e:
+        print("An error occured:", e)
+        traceback.print_exc()
+    
+     # finally return data, events_code, ch_names, sfreq , if one of the variables doesn't exist (an exception occured during the process), return an empty variable / 0.
+    finally:
+        if 'data' not in locals():
+            data = np.empty(0)
+
+        if 'events_code' not in locals():
+            events_code = np.empty(0)
+
+        if 'ch_names' not in locals():
+            ch_names = []
+
+        if 'sfreq' not in locals():
+            sfreq = 0
+
+        return data, events_code, ch_names, sfreq
+
+
+
 def remove_oddball_trials(data: np.ndarray, events_code: np.ndarray, oddball_id: int):
 
     """ 
@@ -133,66 +196,6 @@ def remove_oddball_trials(data: np.ndarray, events_code: np.ndarray, oddball_id:
         if 'data_removed' not in locals():
             data_removed = np.empty(0)
         return data_removed, events_code_removed
-
-
-def extract_from_dict(sub_dict: dict):
- 
-    """
-    
-    Recieves:
-    * sub_dict: subject dictionary with the data that was converted from mat file, with fields:['data']['trial'], ['data']['trialinfo'], 
-    ['data']['grad']['label'], ['data']['fsample'].
-    
-    Function:
-    * Extracts relevant data from the dictionary for the following steps.
-
-    Returns: 
-    * data: ndarray of shape (trials, channels, time points). 
-    * events_code: ndarray of shape (1, trials), stores the integers corresponding to the condition tested in each trial, 
-    * ch_names: list of length 246, first 246 channel (sensor) names as a  (all "good" magnometers, the bad and reference channels are excluded).
-    * s_freq: int, sampling frequency.
-
-     """
-
-    try:
-        # Extract data and trial info
-        data = sub_dict.get("data").get("trial") 
-        events_code = np.array(sub_dict.get("data").get("trialinfo")[:, 0], dtype=int) # convert from float to int
-        ch_names = sub_dict.get("data").get("grad").get("label")[0:246]
-        sfreq = sub_dict.get("data").get("fsample")
-        
-
-    except AttributeError as e:
-       print("An error occured:", e) 
-
-    except ValueError as e:
-        print("An error occured:", e)
-    
-    except TypeError as e:
-        print("An error occured:", e)
-    
-    except KeyError as e:
-        print("An error occured:", e)
-
-    except Exception as e:
-        print("An error occured:", e)
-        traceback.print_exc()
-    
-     # finally return data, events_code, ch_names, sfreq , if one of the variables doesn't exist (an exception occured during the process), return an empty variable / 0.
-    finally:
-        if 'data' not in locals():
-            data = np.empty(0)
-
-        if 'events_code' not in locals():
-            events_code = np.empty(0)
-
-        if 'ch_names' not in locals():
-            ch_names = []
-
-        if 'sfreq' not in locals():
-            sfreq = 0
-
-        return data, events_code, ch_names, sfreq
     
 
 def create_events_for_epochs(events_code: np.ndarray):
@@ -236,6 +239,105 @@ def create_events_for_epochs(events_code: np.ndarray):
                         events = np.empty(0)
                 return events
 
+def extract_raw_info(folder_directory: os.PathLike):
+    """
+
+    Recieves:
+    * folder_directory: directory to the folder where the raw MEG bti recording is saved
+
+    Function:
+    * reads and extracts info from raw MEG bti recording
+
+    Returns:
+    * mne.Info instance
+
+    """
+
+    try:
+        # redirect to the folder
+        os.chdir(folder_directory) 
+
+        # glob.glob returns a list of the paths with the desired pattern, return the first and only object in the list
+        raw_path = glob.glob(f"*1Hz")[0] 
+
+        # read raw object
+        raw = mne.io.read_raw_bti(raw_path, rename_channels=False)
+
+        # drop all bad channels and reference channels (leaves 246 channels)
+        raw.drop_channels(['A17','A203','TRIGGER','RESPONSE','MLzA','MLyA','MLzaA','MLyaA','MLxA','MLxaA','MRzA','MRxA','MRzaA','MRxaA','MRyA',
+                'MCzA','MRyaA','MCzaA','MCyA','GzxA','MCyaA','MCxA','MCxaA','GyyA','GzyA','GxxA','GyxA','UACurrent','X1','X3','X5','X2','X4','X6'])
+        
+        # extracts only info from raw object
+        raw_info = raw.info
+
+    except FileNotFoundError as e:
+        print("An error occured:", e)
+        
+    except OSError as e:
+        print("An error occured:", e)
+
+    except PermissionError as e:
+        print("An error occured:", e)
+
+    except NameError as e:
+        print("An error occured:", e)
+
+    except AttributeError as  e:
+        print("An error occured:", e)
+
+    except TypeError as e:
+        print("An error occured:", e)
+
+    except Exception as e:
+        print("An error occured:", e)
+        traceback.print_exc()
+    
+    finally:
+        if 'raw_info' not in locals():
+            raw_info = {}
+        return raw_info
+    
+
+def create_mne_info(sub_dict: dict):
+    """
+    Recieves:
+    * sub_dict: dictionary with fields ['data']['trial'], ['data']['trialinfo'], 
+    ['data']['grad']['label'], ['data']['fsample'].  
+
+    Function:
+    * Creates a manual mne.Info instance with info: channel names, channel_types, sampling frequency
+
+    Returns:
+    * mne_info: an instance of mne.Info object, or an empty dictionary in case of an exception.
+
+    """
+
+    try:
+        _, _, ch_names, sfreq = extract_from_dict(sub_dict)
+        ch_types = np.array(246 * ['mag']) # create 246 'mag' channel types relating to the 246 extracted channel names in extract_from_dict channels 
+        mne_info = mne.create_info(ch_names, sfreq, ch_types, verbose=None)
+    
+    
+    except KeyError as e:
+        print(" An error occured:", e)
+    
+    except TypeError as e:
+        print(" An error occured:", e)
+
+    except ValueError as e:
+        print(" An error occured:", e)
+
+    except AttributeError as e:
+        print(" An error occured:", e)
+
+    except Exception as e:
+        print(" An error occured:", e)
+    
+    # finally returns mne_info, if doesn't exist due to exception, return an empty dictionary
+    finally:
+        if mne_info not in locals():
+            mne_info = {}
+        return mne_info
 
 
 def convert_dict_to_epochs(sub_dict: dict, mne_info):
@@ -317,46 +419,54 @@ def convert_dict_to_epochs(sub_dict: dict, mne_info):
         return epochs
 
 
-def create_mne_info(sub_dict: dict):
+def convert_mat_to_epochs(file_name: os.PathLike, info = None):
+
     """
     Recieves:
-    * sub_dict: dictionary with fields ['data']['trial'], ['data']['trialinfo'], 
-    ['data']['grad']['label'], ['data']['fsample'].  
+    * file_name: mat file path to convert to an mne.EpochsArray instance
+    * info: mne.Info instance, if info is not given a manual info is created (the manuall info doesn't contain sensor positions)
 
     Function:
-    * Creates a manual mne.Info instance with info: channel names, channel_types, sampling frequency
+    * Convert mat structure to an EpochsArray instance.
 
-    Returns:
-    * mne_info: an instance of mne.Info object, or an empty dictionary in case of an exception.
+    Reutrns:
+    * epochs: EpochsArray instance, or an empty dictionary in case of exception
 
     """
 
-    try:
-        _, _, ch_names, sfreq = extract_from_dict(sub_dict)
-        ch_types = np.array(246 * ['mag']) # create 246 'mag' channel types relating to the 246 extracted channel names in extract_from_dict channels 
-        mne_info = mne.create_info(ch_names, sfreq, ch_types, verbose=None)
-    
-    
-    except KeyError as e:
-        print(" An error occured:", e)
-    
-    except TypeError as e:
-        print(" An error occured:", e)
+    if os.path.exists(file_name):
+        
+        try:
+            sub_dict = convert_mat_to_dict(file_name)
 
-    except ValueError as e:
-        print(" An error occured:", e)
+            if info is None:
+                mne_info = create_mne_info(sub_dict)
+                
+            epochs = convert_dict_to_epochs(sub_dict, mne_info)
 
-    except AttributeError as e:
-        print(" An error occured:", e)
+            if len(epochs)==0:
+                raise EmptyVariable("an empty variable was detected","epochs")
 
-    except Exception as e:
-        print(" An error occured:", e)
+        except EmptyVariable as e:
+            print("An error occured:", e)
+
+        except TypeError as e:
+            print("An error occured:", e)
+        
+        except OSError as e:
+            print("An error occured:", e)
+
+        except Exception as e:
+            print("An error occured:", e)
+            traceback.print_exc()
+        
+    else:
+        raise FileNotFoundError
     
-    # finally returns mne_info, if doesn't exist due to exception, return an empty dictionary
-    finally:
-        if mne_info not in locals():
-            mne_info = {}
-        return mne_info
+    if 'epochs' not in locals():
+        epochs = {}
+    
+    return epochs
 
 
 def combine_epochs(epochs, old_event_ids: dict, new_event_ids: dict):
@@ -384,7 +494,7 @@ def combine_epochs(epochs, old_event_ids: dict, new_event_ids: dict):
         # goes through new event_ids and assignes a new event id for every triplet of old event ids and returns a new epochs array with combined
         # event ids
         for i in np.arange(len(new_event_ids)):
-            epochs_combined = mne.epochs.combine_event_ids(epochs, old_event_ids[3*i:3*i+3] , {list(new_event_ids.keys())[i]: list(new_event_ids.values())[i]}, copy=False)
+            epochs_combined = mne.epochs.combine_event_ids(epochs, old_event_ids[3*i:3*i+3] , {list(new_event_ids.keys())[i]: list(new_event_ids.values())[i]}, copy=True)
     
     except TypeError as e:
         print("An error occured:", e)
@@ -408,7 +518,7 @@ def create_CSD(epochs_instance, condition:str, freq_bands: list, time_range: tup
     * epochs_instance: mne.EpochsArray.
     * condition: str, the event_id key present in epochs_instance that corresponds to the experimental condition.
     * freq_bands: list of tuples(1,2) containing the lower an upper bound for each frequency band.
-    * time_range: tuple, baseline time range ((-0.3,0) for our case).
+    * time_range: tuple, post stimulus / baseline time range.
 
     Function:
     * Calculate the cross spectral density for all channels in epochs through the set frequencies for the whole time range.
@@ -460,56 +570,6 @@ def create_CSD(epochs_instance, condition:str, freq_bands: list, time_range: tup
         if 'csd' not in locals():
             csd = np.empty(0)
         return csd
-
-
-def convert_mat_to_epochs(file_name: os.PathLike, info = None):
-
-    """
-    Recieves:
-    * file_name: mat file path to convert to an mne.EpochsArray instance
-    * info: mne.Info instance, if info is not given a manual info is created (the manuall info doesn't contain sensor positions)
-
-    Function:
-    * Convert mat structure to an EpochsArray instance.
-
-    Reutrns:
-    * epochs: EpochsArray instance, or an empty dictionary in case of exception
-
-    """
-
-    if os.path.exists(file_name):
-        
-        try:
-            sub_dict = convert_mat_to_dict(file_name)
-
-            if info == None:
-                mne_info = create_mne_info(sub_dict)
-                
-            epochs = convert_dict_to_epochs(sub_dict, mne_info)
-
-            if len(epochs)==0:
-                raise EmptyVariable("an empty variable was detected","epochs")
-
-        except EmptyVariable as e:
-            print("An error occured:", e)
-
-        except TypeError as e:
-            print("An error occured:", e)
-        
-        except OSError as e:
-            print("An error occured:", e)
-
-        except Exception as e:
-            print("An error occured:", e)
-            traceback.print_exc()
-        
-    else:
-        raise FileNotFoundError
-    
-    if 'epochs' not in locals():
-        epochs = {}
-    
-    return epochs
 
 
 def save_csds_add_to_report(csd, condition: str, subject_num: str, report):
@@ -610,64 +670,6 @@ def topomap_GFP_psd_plot_report(epochs, report, subject_num: str="default"):
     except Exception as e:
         print("An error occured:", e)
 
-
-def extract_raw_info(folder_directory: os.PathLike):
-    """
-
-    Recieves:
-    * folder_directory: directory to the folder where the raw MEG bti recording is saved
-
-    Function:
-    * reads and extracts info from raw MEG bti recording
-
-    Returns:
-    * mne.Info instance
-
-    """
-
-    try:
-        # redirect to the folder
-        os.chdir(folder_directory) 
-
-        # glob.glob returns a list of the paths with the desired pattern, return the first and only object in the list
-        raw_path = glob.glob(f"*1Hz")[0] 
-
-        # read raw object
-        raw = mne.io.read_raw_bti(raw_path, rename_channels=False)
-
-        # drop all bad channels and reference channels (leaves 246 channels)
-        raw.drop_channels(['A247','A248','TRIGGER','RESPONSE','MLzA','MLyA','MLzaA','MLyaA','MLxA','MLxaA','MRzA','MRxA','MRzaA','MRxaA','MRyA',
-                'MCzA','MRyaA','MCzaA','MCyA','GzxA','MCyaA','MCxA','MCxaA','GyyA','GzyA','GxxA','GyxA','UACurrent','X1','X3','X5','X2','X4','X6'])
-        
-        # extracts only info from raw object
-        raw_info = raw.info
-
-    except FileNotFoundError as e:
-        print("An error occured:", e)
-        
-    except OSError as e:
-        print("An error occured:", e)
-
-    except PermissionError as e:
-        print("An error occured:", e)
-
-    except NameError as e:
-        print("An error occured:", e)
-
-    except AttributeError as  e:
-        print("An error occured:", e)
-
-    except TypeError as e:
-        print("An error occured:", e)
-
-    except Exception as e:
-        print("An error occured:", e)
-        traceback.print_exc()
-    
-    finally:
-        if 'raw_info' not in locals():
-            raw_info = {}
-        return raw_info
     
 
 def compute_plot_TFR_contrast_report(epochs, subject_num: str, freqs: np.ndarray, con1: tuple, con2: tuple, report):
@@ -774,9 +776,10 @@ Analyse epochs_combined data using CSD, TFR, GFP, PSD and topo plots.
 Subjects foldes must contain only one mat file that contains the epoched data and one raw MEG bti recording.
 
 """
-report = mne.Report(title="DS project report")
 
 try:
+    report = mne.Report(title="DS project report")
+
     directory = subject_directory_pattern # directory pattern for itterating over subject folders
 
     # itterate over all subjects folders
@@ -843,11 +846,15 @@ try:
                 con2=('nonfood',nonfood), report=report)
                 if len(tfr)==0:
                     raise EmptyVariable("an empty variable was detected", "tfr_food")
+                    
 
                 report.save(h5_report_path)
                 report.save(html_report_path)
 
             except IndexError as e:
+                print("An error occured:", e)
+
+            except FileNotFoundError as e:
                 print("An error occured:", e)
 
             except EmptyVariable as e:
@@ -874,7 +881,13 @@ try:
 
         else:
             raise FileNotFoundError
-        
+
+except ModuleNotFoundError as e:
+    print(" An error occured:", e)
+
+except AttributeError as e:
+    print(" An error occured:", e)
+
 except NameError as e:
     print(" An error occured:", e)
 
