@@ -14,22 +14,66 @@ This file also describes the purpose of each numbered (00-12) Python script of v
 <h3> Directory Structure </h3>
 
 ```
+ |-.DS_Store
  |-tests
+ | |-conftest.py
+ | |-test_plot_grandavg_power.py
+ | |-.DS_Store
+ | |-test_plot_connectivity_contrast.py
  | |-__pycache__
+ | | |-test_plot_csd_matrices.cpython-312-pytest-8.3.4.pyc
+ | | |-conftest.cpython-312-pytest-8.3.4.pyc
+ | | |-test_plot_source_space.cpython-312-pytest-8.3.4.pyc
+ | | |-test_plot_forward_model.cpython-312-pytest-8.3.4.pyc
+ | | |-test_plot_grandavg_power.cpython-312-pytest-8.3.4.pyc
+ | | |-test_plot_connectivity_contrast.cpython-312-pytest-8.3.4.pyc
+ | |-test_plot_csd_matrices.py
+ | |-test_plot_forward_model.py
+ | |-test_plot_source_space.py
  |-__pycache__
+ | |-plot_replicated_files.cpython-312.pyc
+ | |-replication_config.cpython-312.pyc
+ |-README_Replication.md
  |-data
  | |-power
+ | | |-face-average-dics-rh.stc
+ | | |-scrambled-average-dics-rh.stc
+ | | |-contrast-average-dics-rh.stc
+ | | |-face-average-dics-lh.stc
+ | | |-scrambled-average-dics-lh.stc
+ | | |-contrast-average-dics-lh.stc
+ | | |-baseline-average-dics-rh.stc
+ | | |-baseline-average-dics-lh.stc
+ | |-.DS_Store
  | |-connectivity
+ | | |-contrast-average-connectivity.h5
+ | | |-scrambled-average-connectivity.h5
+ | | |-face-average-connectivity.h5
+ | | |-parcelled-average-connectivity.h5
+ | | |-pruned-average-connectivity.h5
  | |-csd
+ | | |-sub001-scrambled-csd.h5
+ | | |-sub001-face-csd.h5
+ | | |-sub001-epo.fif
+ | | |-sub001-baseline-csd.h5
  | |-source_models
+ | | |-.DS_Store
+ | | |-sub001-restricted-meg-ico4-fwd.fif
+ | | |-fsaverage_to_sub001-meg-ico4-fwd.fif
+ | | |-sub001-trans.fif
  | |-templates
  | | |-fsaverage
- | | | |-label
- | | | |-surf
+ | | |-.DS_Store
  | | |-sub001
- | | | |-surf
  |-src
+ | |-.DS_Store
+ | |-replication_config.py
  | |-__pycache__
+ | | |-plot_replicated_files.cpython-312.pyc
+ | | |-replication_config.cpython-312.pyc
+ | |-plot_replicated_files.py
+ | |-try.ipynb
+ | |-main.py
 ```
 
 <h3> Notes about the full replication process in our local machine </h3>
