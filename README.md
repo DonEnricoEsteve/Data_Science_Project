@@ -26,7 +26,9 @@ Pipeline implementation entails applying the pipeline of van Vliet et al. (2018)
 Read the Replication/README.md for a detailed process of how the implementation was performed.
 
 <h3> Submittables </h3>
-Two files are available alongside the respective directories for pipeline replication and implementation: (1) "DS_Python_Paper.pdf" serves as the report for this project in IMRAD format, and (2) "DS_Python_Presentation.pptx" was used for presenting the project last 01/30/2025. Within each directory, the following can be found: "README.md", "src" and "tests" are found.
+Two files are available alongside the respective directories for pipeline replication and implementation: (1) "DS_Python_Paper.pdf" serves as the report for this project in IMRAD format, and (2) "DS_Python_Presentation.pptx" was used for presenting the project last 01/30/2025. 
+
+Within each directory, the following can be found: "README.md", "src" (containing main.py), and "tests" are found.
 
 <h3> Other files </h3>
 The "requirements.txt" file contains all necessary modules and packages for the pipeline replication and implementation.
