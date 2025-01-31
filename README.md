@@ -52,8 +52,3 @@ Within each directory, the following can be found: "README.md", "src" (containin
 
 <h3> Other files </h3>
 The "requirements.txt" file contains all necessary modules and packages for the pipeline replication and implementation.
-
-<h3> Directory Structure </h3>
-
-
-
