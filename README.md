@@ -7,7 +7,7 @@ The project consists of two parts: pipeline replication and pipeline implementat
 the full implementation of oscillatory activity and functional connectivity analyses. As such, we aim to translate their proposed pipeline to a MEG dataset obtained from the MEG-BIU lab (food dataset).
 
 <h3> Assumptions and hypotheses </h3>
-Given the extensive pipeline, it is assumed that differences between the original and replicated results arise. Similarly, during pipeline implementation, it is hypothesized that differences in time-frequency representations between image categories and between presentations arises.
+Given the extensive pipeline, it is assumed that differences between the original and replicated results arise. Similarly, during pipeline implementation, it is hypothesized that differences in time-frequency representations between image categories and between presentations arise.
 
 <h3> Pipeline Replication </h3>
 
@@ -17,16 +17,16 @@ The Python scripts present here are not meant to be used standalone. It depends 
 
 For proprietary reasons, no data has been uploaded to this section. Instead, perform "00_fetch_data.py" found in the link above.
 
-Read the Replication/README.md for a detailed process of how replication was performed.
+Read the Replication/README.md for a detailed process of how the replication was performed.
 
 <h3> Pipeline Implementation </h3>
 
 Pipeline implementation entails applying the pipeline of van Vliet et al. (2018) to our MEG food dataset, obtained from the MEG-BIU Laboratory.
 
-Read the Replication/README.md for a detailed process of how replication was performed.
+Read the Replication/README.md for a detailed process of how the implementation was performed.
 
 <h3> Submittables </h3>
-Two files are available alongside the respective directories for pipeline replication and implementation: (1) "DS_Python_Paper.pdf" serves as the report for this project in IMRAD format, and (2) "DS_Python_Presentation.pptx" was used for presenting the project last 01/30/2025.
+Two files are available alongside the respective directories for pipeline replication and implementation: (1) "DS_Python_Paper.pdf" serves as the report for this project in IMRAD format, and (2) "DS_Python_Presentation.pptx" was used for presenting the project last 01/30/2025. Within each directory, the following can be found: "README.md", "src" and "tests" are found.
 
 <h3> Other files </h3>
 The "requirements.txt" file contains all necessary modules and packages for the pipeline replication and implementation.
