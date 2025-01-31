@@ -8,8 +8,27 @@ This file also describes the purpose of each numbered (00-12) Python script of v
 
 * Define your study_path. 
 * Download the "data" folder from this link: https://drive.google.com/drive/folders/12HLqUYrPtiYSf5Ni7tTC4XWkFPLKYR55?usp=sharing
-* After cloning the repo, put the "data" folder inside "study_path/Replication"
+* After cloning the repo, put the "data" folder inside "study_path/Replication". Refer to the directory structure below.
 * Run the functions defined in "plot_replicated_files.py" using "main.py".
+
+<h3> Directory Structure </h3>
+
+ |-tests
+ | |-__pycache__
+ |-__pycache__
+ |-data
+ | |-power
+ | |-connectivity
+ | |-csd
+ | |-source_models
+ | |-templates
+ | | |-fsaverage
+ | | | |-label
+ | | | |-surf
+ | | |-sub001
+ | | | |-surf
+ |-src
+ | |-__pycache__
 
 <h3> Notes about the full replication process in our local machine </h3>
 
