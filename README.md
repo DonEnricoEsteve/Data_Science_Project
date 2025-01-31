@@ -10,6 +10,7 @@ By Don Enrico Esteve (P9550217B) and Elizabeth Vaisman (318775277)
  |-DS_Python_Project.toml
  |-README.md
  |-DS_Python_Project.code-workspace
+ |-DS_Python_Project.toml
  |-Implementation
  | |-s
  |-DS_Python_Presentation.pptx
@@ -51,4 +52,4 @@ Two files are available alongside the respective directories for pipeline replic
 Within each directory, the following can be found: "README.md", "src" (containing main.py), and "tests" are found.
 
 <h3> Other files </h3>
-The "requirements.txt" file contains all necessary modules and packages for the pipeline replication and implementation.
+The "requirements.txt" file contains all necessary modules and packages for the pipeline replication and implementation. The "DSC_Python_Project.toml" and "DSC_Python_Project.code-workspace" files are included for completion.
