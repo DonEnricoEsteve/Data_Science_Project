@@ -7,20 +7,6 @@ By Don Enrico Esteve (P9550217B) and Elizabeth Vaisman (318775277)
 ```
  |-DS_Python_Paper.pdf
  |-requirements.txt
- |-DSC_Project_venv_mac
- | |-.DS_Store
- | |-bin
- | |-etc
- | |-pyvenv.cfg
- | |-.gitignore
- | |-lib
- | |-share
- |-.pytest_cache
- | |-.DS_Store
- | |-CACHEDIR.TAG
- | |-README.md
- | |-.gitignore
- | |-v
  |-DS_Python_Project.toml
  |-README.md
  |-DS_Python.code-workspace
