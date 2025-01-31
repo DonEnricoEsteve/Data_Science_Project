@@ -13,7 +13,7 @@ This file also describes the purpose of each numbered (00-12) Python script of v
 
 <h3> Directory Structure </h3>
 
-"""
+```
  |-tests
  | |-__pycache__
  |-__pycache__
@@ -30,7 +30,7 @@ This file also describes the purpose of each numbered (00-12) Python script of v
  | | | |-surf
  |-src
  | |-__pycache__
-"""
+```
 
 <h3> Notes about the full replication process in our local machine </h3>
 
