@@ -38,7 +38,7 @@ The Python scripts present here are not meant to be used standalone. It depends 
 
 For proprietary reasons, no data has been uploaded to this section. Instead, perform "00_fetch_data.py" found in the link above.
 
-Read the Replication/README.md for a detailed methodology of how the replication was performed.
+Read the Replication/README_Replication.md for a detailed methodology of how the replication was performed.
 
 <h3> Pipeline Implementation </h3>
 
@@ -52,4 +52,4 @@ Two files are available alongside the respective directories for pipeline replic
 Within each directory, the following can be found: "README.md", "src" (containing main.py), and "tests" are found.
 
 <h3> Other files </h3>
-The "requirements.txt" file contains all necessary modules and packages for the pipeline replication and implementation. The "DSC_Python_Project.toml" and "DSC_Python_Project.code-workspace" files are included for completion.
+The "requirements.txt" file contains all necessary modules and packages for the pipeline replication and implementation. The "DSC_Python_pyproject.toml" and "DSC_Python_Project.code-workspace" files are included for completion.
