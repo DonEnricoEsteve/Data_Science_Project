@@ -12,14 +12,15 @@ By Don Enrico Esteve (P9550217B) and Elizabeth Vaisman (318775277)
  |-DS_Python_Project.code-workspace
  |-DS_Python_Project.toml
  |-Implementation
- | |-s
+ | |-src
+ | |-tests
+ | |-README_Implementation.md
+ | |-__init__.py
  |-DS_Python_Presentation.pptx
  |-Replication
- | |-.DS_Store
  | |-tests
- | |-__pycache__
  | |-README_Replication.md
- | |-data
+ | |-data (Must be manually downloaded and placed here)
  | |-src
  ```
 
