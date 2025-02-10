@@ -7,10 +7,9 @@ By Don Enrico Esteve (P9550217B) and Elizabeth Vaisman (318775277)
 ```
  |-DS_Python_Paper.pdf
  |-requirements.txt
- |-DS_Python_Project.toml
  |-README.md
  |-DS_Python_Project.code-workspace
- |-DS_Python_Project.toml
+ |-DS_Python_pyproject.toml
  |-Implementation
  | |-src
  | |-tests
