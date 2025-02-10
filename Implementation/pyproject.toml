@@ -1,0 +1,98 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "food_meg_analyses"
+version = "1.0"
+requires-python = ">=3.11.0"
+description = "Converts mat files containing epoched meg data and analyses it: CSD, PSD, TFR, topoplots"
+readme = "README.md"
+
+dependencies = [
+    "aiohappyeyeballs==2.4.4",
+    "aiohttp==3.11.11",
+    "aiosignal==1.3.2",
+    "asttokens==3.0.0",
+    "attrs==25.1.0",
+    "cerebrus==0.2",
+    "certifi==2025.1.31",
+    "charset-normalizer==3.4.1",
+    "colorama==0.4.6",
+    "contourpy==1.3.1",
+    "cycler==0.12.1",
+    "decorator==5.1.1",
+    "discord.py==2.4.0",
+    "fonttools==4.55.8",
+    "frozenlist==1.5.0",
+    "glob2==0.7",
+    "h5io==0.2.4",
+    "h5py==3.12.1",
+    "idna==3.10",
+    "Jinja2==3.1.5",
+    "kiwisolver==1.4.8",
+    "lazy_loader==0.4",
+    "MarkupSafe==3.0.2",
+    "matplotlib==3.10.0",
+    "mne==1.9.0",
+    "multidict==6.1.0",
+    "numpy==2.2.2",
+    "packaging==24.2",
+    "pillow==11.1.0",
+    "platformdirs==4.3.6",
+    "pooch==1.8.2",
+    "propcache==0.2.1",
+    "pymatreader==1.0.0",
+    "pyparsing==3.2.1",
+    "python-dateutil==2.9.0.post0",
+    "requests==2.29.0",
+    "scipy==1.14.1",
+    "six==1.17.0",
+    "tqdm==4.67.1",
+    "urllib3==2.3.0",
+    "xmltodict==0.14.2",
+    "yarl==1.18.3"
+]
+
+[project.optional-dependencies]
+dev = [
+    "food_meg_analyses[lint]",
+    "food_meg_analyses[test]",
+    "food_meg_analyses[build]",
+]
+lint = [
+    "ruff",
+]
+test = [
+	"tox",
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+    "pytest-html==4.1.1",
+    "typeguard==4.4.1",
+    "typing_extensions==4.12.2"
+]
+build = [
+    "build>=1.2.2",
+]
+
+[tool.tox] 
+legacy_tox_ini ={inline="""
+[tox]
+envlist = py3{11,12,13}
+
+[testenv]
+deps = pytest>=8.3.4
+commands = pytest
+"""}
+
+[tool.ruff]
+target-version = ["py311", "py312", "py313"]
+exclude = [
+    "my-project-\\d+", # Ignore temporary folder created by setuptools when building an sdist
+    "venv.*/",
+    "build/",
+    "dist/",
+]
+
+[tool.ruff.lint]
+line-length = 50

@@ -1,0 +1,1 @@
+for extraction of raw info, each subject directory should contain a raw bti recording (ending with .1Hz), a config and hs_file for the raw recording.
