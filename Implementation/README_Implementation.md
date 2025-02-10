@@ -68,7 +68,7 @@ __Note__: During run, close all figures that are not being automatically closed 
 
 ### Changes for usage on different data:
 * config.py variables (inside src package) might need to be changed when using different data and project directory: 
-freq_bands, time_frames, event_ids, new_event_ids, contrast combinations, bad_ch_names, channels_number, trial_number, time_points, oddball_id, baseline_time, post_stim_time, project_directory.
+freq_bands, time_frames, event_ids, new_event_ids, contrast combinations, bad_ch_names, channels_number, time_points, oddball_id, baseline_time, post_stim_time, project_directory.
 
 * If the structure of the mat file and the names of the fields are different, changes need to be made in the extract_from_dict function in the module by the same name (change of keys names and heirarchy).
 
