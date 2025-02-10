@@ -21,7 +21,6 @@ The data plus html reports with results for the two participants can be found in
 <pre>
 project folder
 │   .gitignore
-│   pyproject.toml
 │   README_Implementation.md
 │   __init__.py
 │
