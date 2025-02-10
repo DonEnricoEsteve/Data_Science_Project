@@ -22,7 +22,7 @@ The data plus html reports with results for the two participants can be found in
 project folder
 │   .gitignore
 │   pyproject.toml
-│   README.md
+│   README_Implementation.md
 │   __init__.py
 │
 ├───src
