@@ -4,7 +4,7 @@ freq_bands = [
         (7, 13),    # alpha
         (13, 17),   # low beta
         (17, 25),   # high beta 1
-        (25, 30),   # high beta 2
+        (25, 31),   # high beta 2
     ]
 
 # time ranges for topo-plot plotting purposes only
@@ -56,7 +56,7 @@ post_stim_time = (0.0, 0.8)
 
 # Paths for file accessing and results saving:
 
-project_directory = "C:/Users/Elizabeth Vaisman/food_meg_analyses" 
+project_directory = "C:/Projects/Data_Science_Project/Implementation" 
 
 subs_directory = f"{project_directory}/SUBS_DIR"
 

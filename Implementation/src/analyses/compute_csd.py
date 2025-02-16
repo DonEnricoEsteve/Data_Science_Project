@@ -10,7 +10,7 @@ warnings.simplefilter('ignore') #supress morlet wavelet warnings about length of
 from src import config
 
 @beartype
-def compute_csd(epochs_instance: mne.EpochsArray, condition:str, freq_bands: list[tuple[int, int]], time_range: tuple[float,float], is_base_line=False) \
+def compute_csd(epochs_instance: mne.EpochsArray | mne.epochs.EpochsFIF, condition:str, freq_bands: list[tuple[int, int]], time_range: tuple[float,float], is_baseline=False, save=True) \
     -> tuple[mne.time_frequency.CrossSpectralDensity, mne.time_frequency.CrossSpectralDensity]:
     """
     Recieves:
@@ -25,13 +25,14 @@ def compute_csd(epochs_instance: mne.EpochsArray, condition:str, freq_bands: lis
 
     Returns:
     * csd: CrossSpectralDensity instance, the cross spectral density calculated.
+    * csd_mean: CrossSpectralDensity instance, averaged across frequency bands.
 
     """
 
 
     # vaidate input values 
     try:
-        input_validation_tests.compute_csd(freq_bands=freq_bands, time_range=time_range)
+        input_validation_tests.compute_csd_val(freq_bands=freq_bands, time_range=time_range)
 
     except Exception as e:
         print("An error occured:", e)
@@ -48,8 +49,15 @@ def compute_csd(epochs_instance: mne.EpochsArray, condition:str, freq_bands: lis
 
             frequencies = np.arange(fmin, fmax + 1, 2) # calculate the csd for the frequencies in the frequency range with a 2Hz step
 
-            # Remove the mean during the time interval for which we compute the CSD
-            epochs_baselined = epochs_instance[condition].apply_baseline((tmin, tmax)) 
+            if is_baseline==True:
+
+                condition = 'baseline'
+
+                # Remove the mean during the time interval for which we compute the CSD
+                epochs_baselined = epochs_instance.apply_baseline((tmin, tmax)) 
+
+            else:
+                epochs_baselined = epochs_instance[condition].apply_baseline((tmin, tmax)) 
 
             # # extracts the epochs data for a single condition, the condition in which we desire to compute the csd.
             # epochs_for_csd = epochs_instance[condition]
@@ -61,11 +69,10 @@ def compute_csd(epochs_instance: mne.EpochsArray, condition:str, freq_bands: lis
             # average csds over frequency bands, each frequency band is a tuple (f[0], f[1])
             csd_mean = csd.mean([f[0] for f in freq_bands], [f[1] for f in freq_bands])
 
-            if is_base_line==True:
-                condition = 'baseline'
             # save original and mean csd:
-            csd.save(config.get_csd_path(condition)) 
-            csd_mean.save(config.get_csd_mean_path(condition))
+            if save == True:
+                csd.save(config.get_csd_path(condition)) 
+                csd_mean.save(config.get_csd_mean_path(condition))
 
         except Exception as e:
             print("An error occured:", e)

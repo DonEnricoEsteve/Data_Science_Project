@@ -10,29 +10,22 @@ This file also describes the purpose of each numbered (00-12) Python script of v
 * Download the "data" folder from this link: https://drive.google.com/drive/folders/12HLqUYrPtiYSf5Ni7tTC4XWkFPLKYR55?usp=sharing
 * After cloning the repo, put the "data" folder inside "study_path/Replication". Refer to the directory structure below.
 * Run the functions defined in "plot_replicated_files.py" using "main.py".
+* __Important Note__: 
+    To install conpy for the replication part run:
+    pip install https://github.com/aaltoimaginglanguage/conpy/zipball/master
 
 <h3> Directory Structure </h3>
 
 ```
- |-.DS_Store
+ Replication
  |-tests
+ | |-__init__.py
  | |-conftest.py
  | |-test_plot_grandavg_power.py
- | |-.DS_Store
  | |-test_plot_connectivity_contrast.py
- | |-__pycache__
- | | |-test_plot_csd_matrices.cpython-312-pytest-8.3.4.pyc
- | | |-conftest.cpython-312-pytest-8.3.4.pyc
- | | |-test_plot_source_space.cpython-312-pytest-8.3.4.pyc
- | | |-test_plot_forward_model.cpython-312-pytest-8.3.4.pyc
- | | |-test_plot_grandavg_power.cpython-312-pytest-8.3.4.pyc
- | | |-test_plot_connectivity_contrast.cpython-312-pytest-8.3.4.pyc
  | |-test_plot_csd_matrices.py
  | |-test_plot_forward_model.py
  | |-test_plot_source_space.py
- |-__pycache__
- | |-plot_replicated_files.cpython-312.pyc
- | |-replication_config.cpython-312.pyc
  |-README_Replication.md
  |-data
  | |-power
@@ -44,7 +37,6 @@ This file also describes the purpose of each numbered (00-12) Python script of v
  | | |-contrast-average-dics-lh.stc
  | | |-baseline-average-dics-rh.stc
  | | |-baseline-average-dics-lh.stc
- | |-.DS_Store
  | |-connectivity
  | | |-contrast-average-connectivity.h5
  | | |-scrambled-average-connectivity.h5
@@ -66,14 +58,10 @@ This file also describes the purpose of each numbered (00-12) Python script of v
  | | |-.DS_Store
  | | |-sub001
  |-src
- | |-.DS_Store
+ | |-__init__.py
  | |-replication_config.py
- | |-__pycache__
- | | |-plot_replicated_files.cpython-312.pyc
- | | |-replication_config.cpython-312.pyc
  | |-plot_replicated_files.py
- | |-try.ipynb
- | |-main.py
+ | |-__main__.py
 ```
 
 <h3> Notes about the full replication process in our local machine </h3>

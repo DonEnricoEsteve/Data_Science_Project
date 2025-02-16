@@ -11,10 +11,12 @@ By Don Enrico Esteve (P9550217B) and Elizabeth Vaisman (318775277)
  |-DS_Python_Project.code-workspace
  |-DS_Python_pyproject.toml
  |-Implementation
+ | |-__init__.py
  | |-src
  | |-tests
+ | |-SUBS_DIR (Subjects' data must be manually downloaded and placed in corresponding folders here) 
  | |-README_Implementation.md
- | |-__init__.py
+ | |-test_csd_report.html
  |-DS_Python_Presentation.pptx
  |-Replication
  | |-tests
@@ -53,3 +55,7 @@ Within each directory, the following can be found: "README.md", "src" (containin
 
 <h3> Other files </h3>
 The "requirements.txt" file contains all necessary modules and packages for the pipeline replication and implementation. The "DSC_Python_pyproject.toml" and "DSC_Python_Project.code-workspace" files are included for completion.
+
+<h3> Important Note! </h3>
+To install conpy for the replication part run: 
+    pip install https://github.com/aaltoimaginglanguage/conpy/zipball/master

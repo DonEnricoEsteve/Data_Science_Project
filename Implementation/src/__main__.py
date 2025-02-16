@@ -10,12 +10,21 @@ Subjects foldes must contain only one mat file that contains the epoched data an
 """importations of libraries"""
 
 if __name__ == "__main__":
+    
+    print("Start of script run")
 
     try:
-        import sys
-        import os 
+        import mne, glob, warnings, traceback, sys, os
+        
+        package_path = "c:/Projects/Data_Science_Project/Implementation"
+        if os.path.exists(package_path):
+            if package_path not in sys.path:
+                sys.path.insert(0, package_path)
+        else:
+            raise FileNotFoundError(f"The path {package_path} doesn't exist")
+
+
         import numpy as np
-        import mne, glob, warnings, traceback
         from mne.time_frequency import csd_morlet, read_spectrum, read_csd, read_tfrs
         from pymatreader import read_mat
         from src import config
@@ -25,16 +34,9 @@ if __name__ == "__main__":
         from tests import output_tests, input_validation_tests
     
     except Exception as e:
-        print("problem with modules importation in __main__.py")
+        print("problem with modules importation in __main__.py", e)
 
     try:
-        print("Start of script run")
-        package_path = config.project_directory
-        if os.path.exists(package_path):
-            if package_path not in sys.path:
-                sys.path.insert(0, package_path)
-        else:
-            raise FileNotFoundError(f"The path {package_path} doesn't exist")
 
         if not os.path.exists(config.subs_directory):
             raise FileNotFoundError(f"The path {config.subs_directory} doesn't exist")
@@ -83,7 +85,7 @@ if __name__ == "__main__":
 
                     # csd calculation of baseline over the desired frequency range, save and add to report. (calculates csd baseline for the last 
                     # condition in loop, we assume that all conditions have same baseline activity)
-                    csd_baseline, csd_baseline_mean = compute_csd.compute_csd(epochs, condition, config.freq_bands, config.baseline_time, is_base_line=True)
+                    csd_baseline, csd_baseline_mean = compute_csd.compute_csd(epochs, condition, config.freq_bands, config.baseline_time, is_baseline=True)
                     output_tests.test_csd(csd_baseline)
                     output_tests.test_csd(csd_baseline_mean)
                     

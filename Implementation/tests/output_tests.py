@@ -1,6 +1,5 @@
 import mne
 from src import config
-import numpy as np
 from numpy.typing import NDArray
 from beartype import beartype
 

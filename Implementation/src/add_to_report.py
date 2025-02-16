@@ -17,7 +17,7 @@ def add_to_report(report: mne.Report, subject_num: str):
     #plot power spectral density (computed for evoked - average of all conditions): 
     psd = read_spectrum(config.psd_path)
 
-    report.add_figure(psd.plot(), title=config.get_report_titles()['psd'], section=config.get_report_sections(subject_num=subject_num)['psd'], replace=True)
+    report.add_figure(psd.plot(show=False), title=config.get_report_titles()['psd'], section=config.get_report_sections(subject_num=subject_num)['psd'], replace=True)
 
     #plot csds (computed for epochs_combined[condition]):
     for condition in list(epochs_combined.event_id.keys())+ ['baseline']:    
@@ -48,7 +48,7 @@ def add_to_report(report: mne.Report, subject_num: str):
         contrast = file.split('evoked_tfr_')[1].split('.h5')[0] # get the name of the contrast for the specific tfr computed
 
         # plot the tfr contrast for all frequencies in the tfr computation
-        report.add_figure(tfr_contrast.plot(combine='mean', baseline=config.baseline_time, title=f"Contrast ({contrast})"),
+        report.add_figure(tfr_contrast.plot(combine='mean', baseline=config.baseline_time, title=f"Contrast ({contrast})", show=False),
         title= config.get_report_titles(contrast=contrast)['tfr_contrast'], section=config.get_report_sections(subject_num=subject_num)['tfr_contrast'], replace=True)
         plt.close('all')
 
@@ -73,7 +73,7 @@ def add_to_report(report: mne.Report, subject_num: str):
                 print(f"Creating a topoplot for the parameters: contrat - {contrast}, frequency range - {fmin}-{fmax}, \n time range - {tmin}-{tmax}")
 
                 #plotting topo plot
-                report.add_figure(tfr_contrast.plot_topomap(size=8, mode='mean', fmin=fmin, fmax=fmax, tmin=tmin, tmax=tmax, baseline=config.baseline_time), 
+                report.add_figure(tfr_contrast.plot_topomap(size=8, mode='mean', fmin=fmin, fmax=fmax, tmin=tmin, tmax=tmax, baseline=config.baseline_time, show=False), 
                 title=config.get_report_titles(contrast=contrast, fmin=fmin, fmax=fmax, tmin=tmin, tmax=tmax)['tfr_contrast_topoplots'], section=config.get_report_sections(subject_num=subject_num)['tfr_contrast_topoplots'], replace=True)
                 plt.close('all')
 

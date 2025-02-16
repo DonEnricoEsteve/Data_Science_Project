@@ -2,10 +2,12 @@
 
 # Import necessary modules
 try:
+    import traceback
     from plot_replicated_files import *
 
 except ImportError as e:
     print(f"There is an error importing a module. {e}. Please install it first.")
+    traceback.print_exc()
 
 # Plot cross-spectral density matrices for each frequency band of each condition for a given subject
 plot_csd_matrices(sub_idx=0, cond="face", mode_val='csd', meg_val="grad")

@@ -3,7 +3,6 @@ import mne
 import numpy as np
 from src import config
 import os
-import numbers
 from numpy.typing import NDArray
 from beartype import beartype
 
@@ -22,7 +21,7 @@ def file_exists(file_name: str|os.PathLike):
         raise FileNotFoundError(f"The file: {file_name}, doesn't exist.")
 
 @beartype
-def compute_csd(freq_bands: list[tuple[int, int]], time_range: tuple[float, float]):
+def compute_csd_val(freq_bands: list[tuple[int, int]], time_range: tuple[float, float]):
     """
 
     Function: asserts correct values of inputs to compute_csd function
