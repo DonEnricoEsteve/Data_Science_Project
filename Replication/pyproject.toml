@@ -3,9 +3,9 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Implementation"
+name = "Replication"
 version = "1.0"
 requires-python = ">=3.11.0"
 description = "Converts mat files containing epoched meg data and analyses it: CSD, PSD, TFR, topoplots"
-readme = "README_Implementation.md"
+readme = "README_Replication.md"
 

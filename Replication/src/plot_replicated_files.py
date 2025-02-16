@@ -11,7 +11,6 @@
 # Import necessary modules
 try:
     import mne
-    import traceback
     import conpy
     import matplotlib.pyplot as plt
     from mne.time_frequency import read_csd, pick_channels_csd 
@@ -25,7 +24,7 @@ try:
 
 except ImportError as e:
     print(f"There is an error importing a module. {e}. Please install it first.")
-    traceback.print_exc()
+
 
 # ========================================================== #
 #  Part 2: Estimating cross-spectral density (CSD) matrices
