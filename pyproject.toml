@@ -8,8 +8,8 @@ version = "1.0"
 requires-python = ">=3.11.0"
 description = "Pipeline replication and implementation"
 authors = [
-    { name = "Don Enrico Esteve", ID = "P9550217B", email = "donenrico.esteve@live.biu.ac.il" },
-    { name = "Elizabeth Vaisman", ID = "318775277", email = "elizabeth.vaisman@live.biu.ac.il" },
+    { name = "Don Enrico Esteve", email = "donenrico.esteve@live.biu.ac.il" },
+    { name = "Elizabeth Vaisman", email = "elizabeth.vaisman@live.biu.ac.il" },
 ]
 readme = "README.md"
 license = { text = "CC0 1.0 Universal" }
