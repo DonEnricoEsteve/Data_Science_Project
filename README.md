@@ -9,7 +9,7 @@ By Don Enrico Esteve (P9550217B) and Elizabeth Vaisman (318775277)
  |-requirements.txt
  |-README.md
  |-DS_Python_Project.code-workspace
- |-DS_Python_pyproject.toml
+ |-pyproject.toml
  |-Implementation
  | |-src
  | |-tests
