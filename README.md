@@ -56,7 +56,9 @@ Within each directory, the following can be found: "README.md", "src" (containin
 <h3> MUST READ: Other files </h3>
 The "requirements.txt" file contains all necessary modules and packages for the pipeline replication and implementation. This should be downloaded by 
 
+
 pip install -r requirements.txt
+
 
 The "DSC_Python_pyproject.toml" and "DSC_Python_Project.code-workspace" files are included for completion.
 
