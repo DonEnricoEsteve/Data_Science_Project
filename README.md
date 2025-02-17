@@ -9,7 +9,6 @@ By Don Enrico Esteve (P9550217B) and Elizabeth Vaisman (318775277)
  |-requirements.txt
  |-README.md
  |-DS_Python_Project.code-workspace
- |-pyproject.toml
  |-Implementation
  | |-pyproject.toml
  | |-__init__.py
@@ -54,8 +53,12 @@ Two files are available alongside the respective directories for pipeline replic
 
 Within each directory, the following can be found: "README.md", "src" (containing main.py), and "tests" are found.
 
-<h3> Other files </h3>
-The "requirements.txt" file contains all necessary modules and packages for the pipeline replication and implementation. The "DSC_Python_pyproject.toml" and "DSC_Python_Project.code-workspace" files are included for completion.
+<h3> MUST READ: Other files </h3>
+The "requirements.txt" file contains all necessary modules and packages for the pipeline replication and implementation. This should be downloaded by 
+
+pip install -r requirements.txt
+
+The "DSC_Python_pyproject.toml" and "DSC_Python_Project.code-workspace" files are included for completion.
 
 <h3> Important Note! </h3>
 To install conpy for the replication part run: 
