@@ -10,7 +10,7 @@ warnings.simplefilter('ignore') #supress morlet wavelet warnings about length of
 from src import config
 
 @beartype
-def compute_csd(epochs_instance: mne.EpochsArray | mne.epochs.EpochsFIF, condition:str, freq_bands: list[tuple[int, int]], time_range: tuple[float,float], is_baseline=False, save=True) \
+def compute_csd(epochs_instance: mne.EpochsArray | mne.epochs.EpochsFIF, freq_bands: list[tuple[int, int]], time_range: tuple[float,float], condition:str='baseline', save=True) \
     -> tuple[mne.time_frequency.CrossSpectralDensity, mne.time_frequency.CrossSpectralDensity]:
     """
     Recieves:
@@ -49,9 +49,7 @@ def compute_csd(epochs_instance: mne.EpochsArray | mne.epochs.EpochsFIF, conditi
 
             frequencies = np.arange(fmin, fmax + 1, 2) # calculate the csd for the frequencies in the frequency range with a 2Hz step
 
-            if is_baseline==True:
-
-                condition = 'baseline'
+            if condition == 'baseline':
 
                 # Remove the mean during the time interval for which we compute the CSD
                 epochs_baselined = epochs_instance.apply_baseline((tmin, tmax)) 

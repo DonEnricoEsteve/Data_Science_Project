@@ -79,13 +79,13 @@ if __name__ == "__main__":
                     for condition in conditions:
 
                         # csd calculation post stimulus over the desired frequency range per condition, save and add to report
-                        csd, csd_mean = compute_csd.compute_csd(epochs_combined, condition, config.freq_bands, config.post_stim_time) 
+                        csd, csd_mean = compute_csd.compute_csd(epochs_combined, config.freq_bands, config.post_stim_time, condition=condition) 
                         output_tests.test_csd(csd)
                         output_tests.test_csd(csd_mean)
 
                     # csd calculation of baseline over the desired frequency range, save and add to report. (calculates csd baseline for the last 
                     # condition in loop, we assume that all conditions have same baseline activity)
-                    csd_baseline, csd_baseline_mean = compute_csd.compute_csd(epochs, condition, config.freq_bands, config.baseline_time, is_baseline=True)
+                    csd_baseline, csd_baseline_mean = compute_csd.compute_csd(epochs, config.freq_bands, config.baseline_time)
                     output_tests.test_csd(csd_baseline)
                     output_tests.test_csd(csd_baseline_mean)
                     
