@@ -11,7 +11,7 @@ try:
     import traceback
 
     # change package_path according to the project's directory on your machine
-    package_path = "C:/Projects/food_meg_analyses"
+    package_path = "C:/Projects/Data_Science_Project/Implementation"
 
     # setting package path in system path for internal module importations
     if os.path.exists(package_path):
