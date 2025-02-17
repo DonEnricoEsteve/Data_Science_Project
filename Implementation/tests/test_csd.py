@@ -111,7 +111,7 @@ try:
         
     # itterate over conditions and create a figure for each condition such that top image would be the implementation 
     # and bottom image the replication:
-    for i, condition in enumerate(conditions + ["baseline"]):
+    for i, condition in enumerate(["baseline"] + conditions):
         fig = plt.figure(figsize=(10,10))
         ax1 = fig.add_subplot(2,1,1)
         ax2 = fig.add_subplot(2,1,2)
