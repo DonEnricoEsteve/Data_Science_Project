@@ -79,7 +79,7 @@ Implementation
      Report for csd computation testing can be found under "Implementation".
         
 
-__Note__: During run, close all figures that are not being automatically closed for run contnuation.
+__Note__: During run, close all figures that are not being automatically closed for run continuation.
 
 ## Project usage
 
