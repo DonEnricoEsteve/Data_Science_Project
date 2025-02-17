@@ -74,9 +74,9 @@ Implementation
 2. Analysing data using the modules in “analyses” package. 
 3. Plots were added to a report per subject using “add_to_report.py”.
 4. Testing: 
-        * specific input and output validation testing was incorporated in the code using the modules in the “tests” package, runtime typechecking is performed using @beartype.
-        * Additional testing of the compute_csd function was added as a script under "tests" -> test_csd.py, and was run separately.
-        Report for csd computation testing can be found under "Implementation".
+   * specific input and output validation testing was incorporated in the code using the modules in the “tests” package, runtime typechecking is performed using @beartype.
+   * Additional testing of the compute_csd function was added as a script under "tests" -> test_csd.py, and was run separately.
+     Report for csd computation testing can be found under "Implementation".
         
 
 __Note__: During run, close all figures that are not being automatically closed for run contnuation.
@@ -110,7 +110,7 @@ And the following function in main should be changed to contain mne_info=None:
 epochs, evoked = convert_main_funcs.convert_mat_to_epochs(glob.glob(config.mat_file_path_pattern)[0], mne_info=raw_info) 
 
 * Optional: for testing the compute_csd function in "analyses" against a reliable csd matrix, a folder called "sample_subject" 
-should be created in "SUBS_DIR" containing the epochs fif file of the subject and all the CSDs calculated using the replication script/other reliable method, including the baseline CSD. 
+should be created in "SUBS_DIR" containing the epochs fif file of the subject and all the CSDs calculated using the replication script/other reliable method, including the baseline CSD. Files of a sample subject for compute_csd testing can be found here: https://drive.google.com/drive/folders/1QPr3ld6anO-PrIGwzGZPpOsHpKLHyaCW
 
 The following in test_csd.py might need to be changed:
 
