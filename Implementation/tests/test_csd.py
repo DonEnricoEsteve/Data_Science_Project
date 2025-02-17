@@ -11,7 +11,7 @@ try:
     import traceback
 
     # change package_path according to the project's directory on your machine
-    package_path = "C:/Projects/food_meg_analyses"
+    package_path = "C:/Projects/Data_Science_Project/Implementation"
 
     # setting package path in system path for internal module importations
     if os.path.exists(package_path):
@@ -76,10 +76,18 @@ try:
     info = epochs.info
     grads = [info["ch_names"][ch] for ch in mne.pick_types(info, meg="grad")]
 
+    # compute mean csd for baseline
+    _, csd_baseline_mean =  compute_csd(epochs, freq_bands, baseline_time, save=False)
+    csd_baseline_mean = pick_channels_csd(csd_baseline_mean, grads)
+    figures = csd_baseline_mean.plot(info=epochs.info, n_cols=3, show=False)
+    fig = figures[0]
+    fig.suptitle("Implementation CSD for Baseline")
+    prepare_subplot(fig)
+    plt.close('all')
 
     for condition in conditions:
         # compute csd per condition (with mean over desired frequency bands) and pick only gradiometers to display
-        _, csd_mean = compute_csd(epochs, condition, freq_bands, post_stim_time, save=False)
+        _, csd_mean = compute_csd(epochs, freq_bands, post_stim_time, condition=condition, save=False)
         csd_mean = pick_channels_csd(csd_mean, grads)
         figures = csd_mean.plot(info=epochs.info, n_cols=3, show=False)
         fig = figures[0] # need the first and only element because mne.CrossSpectralDensity.plot() returns a list of figures
@@ -87,14 +95,6 @@ try:
         prepare_subplot(fig)
         plt.close('all')
 
-    # compute mean csd for baseline
-    _, csd_baseline_mean =  compute_csd(epochs, condition, freq_bands, baseline_time, is_baseline=True, save=False)
-    csd_baseline_mean = pick_channels_csd(csd_mean, grads)
-    figures = csd_baseline_mean.plot(info=epochs.info, n_cols=3, show=False)
-    fig = figures[0]
-    fig.suptitle("Implementation CSD for Baseline")
-    prepare_subplot(fig)
-    plt.close('all')
 
     # read the csd files created in replication part, average across the desired frequency band and prepare the figures to plot in a subplot
     for file in glob.glob(path_csds_replication):
@@ -111,7 +111,7 @@ try:
         
     # itterate over conditions and create a figure for each condition such that top image would be the implementation 
     # and bottom image the replication:
-    for i, condition in enumerate(conditions + ["baseline"]):
+    for i, condition in enumerate(["baseline"] + conditions):
         fig = plt.figure(figsize=(10,10))
         ax1 = fig.add_subplot(2,1,1)
         ax2 = fig.add_subplot(2,1,2)
