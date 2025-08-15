@@ -7,7 +7,7 @@ In this part of the project we tried to implement the pipeline of Vliet et al. (
 Each participant from the 42 participants in the study was shown image repetitions. 
 There were 18 conditions in the experiment, the images were categorized to 3 main semantic categories (food, positive and neutral), each image was shown twice (1st and 2nd presentation) and in varying lags between the repetitions (short, medium and long).
 The participants' brain activity was recorded using a MEG 4D-Neuroimaging system. 
-The raw data was preprocessed using Matlab, a low band pass filter of 30 Hz and a high band pass filter of 1Hz were used, artifacts of blinks and heart beats were excluded using ICA. The data was epoched in the time range of -0.3-0.8 s relative to event/stimuli onset. 
+The raw data was preprocessed using Matlab, a low band pass filter of 90 Hz and a high band pass filter of 1Hz were used, artifacts of blinks and heart beats were excluded using ICA. The data was epoched in the time range of -0.3-0.8 s relative to event/stimuli onset. 
 
 The data used in the implementation is:
 * Epoched data in a mat file named “datafinalLow”.
